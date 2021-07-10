@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TaskCompleted extends Notification implements ShouldQueue
+class TaskCompleted extends Notification
 {
     use Queueable;
 
@@ -18,9 +18,9 @@ class TaskCompleted extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -31,7 +31,7 @@ class TaskCompleted extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -54,7 +54,7 @@ class TaskCompleted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'data' => 'This is my first post.',
         ];
     }
 }
